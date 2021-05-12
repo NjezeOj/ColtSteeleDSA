@@ -32,7 +32,7 @@ function countUniqueValues(arr){
     arr1 = []
     arr1.push(arr[0])
     for(let j=1; j<arr.length; j++){
-        if(arr[i] !== arr[j] ){            
+        if(arr[i] !== arr[j] ){         
             arr1.push(arr[j])            
         }
         i++
