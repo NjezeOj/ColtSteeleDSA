@@ -13,7 +13,7 @@ function bubbleSort(arr){
         }
         if(noSwaps) break; //optimized
     }
-    return arr;
+    return arr; //[1,2,3,4,5]
 }
 
 console.log(bubbleSort([5,3,4,1,2]))
