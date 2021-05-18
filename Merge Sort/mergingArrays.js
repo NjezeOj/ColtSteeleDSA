@@ -30,7 +30,7 @@ function mergingArrays(arr1, arr2){
 //Colt recommends using a while loop
 //console.log(mergingArrays([1, 10, 50], [2, 14, 99, 100])) //NOTE: SORTED ARRAYS
 //console.log(mergingArrays([100], [1,2,3,5,6]))
-console.log(mergingArrays([], [1,3]))
+console.log(mergingArrays([1,2,3,67], [45,56]))
 
 /* 
 
