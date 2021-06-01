@@ -125,6 +125,98 @@ Let's visualize this!
         return this;
     }
 
+
+    /* 
+    Get pseudocode
+
+-This function should accept an index
+-If the index is less than zero or greater than or equal to the length of the list, return null
+-Loop through the list until you reach the index and return the node at that specific index
+    */
+    get(index) {
+        if (index < 0 || index >= this.length) return null;
+        var counter = 0;
+        var current = this.head;
+        while(counter != index){
+            current = current.next;
+            counter++;
+        }
+        return current;
+
+    }
+
+    /* 
+    Set pseudocode
+
+
+-This function should accept a value and an index
+-Use your get function to find the specific node.
+-If the node is not found, return false
+-If the node is found, set the value of that node to be the value passed to the function and return true
+    */
+
+    set(index, val){
+        var foundNode = this.get(index);
+        if(foundNode){
+            foundNode.val = val;
+            return true;
+        } 
+        return false;
+    }
+   
+    /* 
+    Insert pseudocode
+Let's visualize this!
+
+-If the index is less than zero or greater than the length, return false
+-If the index is the same as the length, push a new node to the end of the list
+-If the index is 0, unshift a new node to the start of the list
+-Otherwise, using the get method, access the node at the index - 1
+-Set the next property on that node to be the new node
+-Set the next property on the new node to be the previous next
+-Increment the length
+-Return true
+    */
+    insert(index, val) {
+        if(index < 0 || index > this.length) return false;
+        if (index === this.length) return !!this.push(val); //returns true
+        if(index === 0) return !!this.unshift(val); //returns true
+
+        var newNode = new Node(val);
+        var prev = this.get(index - 1);
+        var temp = prev.next; //temp is used to store prev.next because if 
+        //we dont and change prev.next, 
+        //the value will be deleted
+        prev.next = newNode;
+        newNode.next = temp;
+        this.length++;
+        return true;
+
+    }
+
+    /* 
+    Remove pseudocode
+Let's visualize this!
+
+-If the index is less than zero or greater than the length, return undefined
+-If the index is the same as the length-1, pop
+-If the index is 0, shift
+-Otherwise, using the get method, access the node at the index - 1
+-Set the next property on that node to be the next of the next node
+-Decrement the length
+-Return the value of the node removed
+    */
+    remove(index){
+        if (index < 0 || index >= this.length) return undefined;
+        if(index === 0) return this.shift();
+        if(index === this.length -1) return this.pop();
+
+        var previousNode = this.get(index-1);
+        var removed = previousNode.next;
+        previousNode.next = removed.next;
+
+        return removed;
+    }
 }
 
 var list = new SinglyLinkedList();
