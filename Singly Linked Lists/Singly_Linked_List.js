@@ -115,7 +115,7 @@ Let's visualize this!
     unshift(val){
         var newNode = new Node(val);
         if(!this.head){
-            this.head = newValue;
+            this.head = newNode;
             this.tail = this.head;
         } else {
             newNode.next = this.head;
@@ -224,7 +224,8 @@ list.push("Hello");
 list.push("there");
 list.push("!");
 console.log(list);
-console.log(list.pop());
-console.log(list);
+
 
 /* list.push("Goodbye"); */
+
+//to push the final commit put the methods
