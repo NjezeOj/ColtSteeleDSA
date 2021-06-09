@@ -181,7 +181,7 @@ Let's visualize this!
         if(index < 0 || index > this.length) return false;
         if (index === this.length) return !!this.push(val); //returns true
         if(index === 0) return !!this.unshift(val); //returns true
-
+ 
         var newNode = new Node(val);
         var prev = this.get(index - 1);
         var temp = prev.next; //temp is used to store prev.next because if 
