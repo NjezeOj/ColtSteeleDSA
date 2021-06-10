@@ -95,5 +95,78 @@ Let's visualize this!
         return oldHead;
         
     }
+
+    /* 
+    Unshifting pseudocode
+-Create a new node with the value passed to the function
+-If the length is 0
+    -Set the head to be the new node
+    -Set the tail to be the new node
+-Otherwise
+    -Set the prev property on the head of the list to be the new node
+    -Set the next property on the new node to be the head property
+    -Update the head to be the new node
+-Increment the length
+-Return the list
+    */
+    unshift(val) {
+        var newNode = new Node(val);
+
+        if (this.length === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            this.head.prev = newNode;
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        this.length++;
+        return this;
+    }
+
+    /* 
+    Get Pseudocode
+Let's visualize this!
+
+-If the index is less than 0 or greater or equal to the length, return null
+-If the index is less than or equal to half the length of the list
+    -Loop through the list starting from the head and loop towards the middle
+    -Return the node once it is found
+-If the index is greater than half the length of the list
+    ​-Loop through the list starting from the tail and loop towards the middle
+    -Return the node once it is found
+ */
+
+    get(index){
+        if(index < 0 || index >= this.length) return null
+        var current = this.head;
+        var end = this.tail;
+        var count = 0;
+        var countEnd = this.length - 1;
+        if (index <= Math.floor(this.length / 2)){
+            while (count != index){
+                current = current.next;
+                count++;
+            }
+            return current;
+        } else {
+            while (countEnd != index) {
+                end = end.prev;
+                countEnd--;
+            }
+            return end;
+        }
+    }
 }
+
+
+var list = new DoublyLinkedList();
+list.push(1)
+list.push(2)
+list.push(3)
+list.push(4)
+
+//console.log(list);
+
+console.log(list.get(2))
 
