@@ -157,6 +157,92 @@ Let's visualize this!
             return end;
         }
     }
+
+    /* 
+    Set pseudocode
+Let's visualize this!
+
+-Create a variable which is the result of the get method at the index passed to the function
+    -If the get method returns a valid node, set the value of that node to be the value passed to the function
+    -Return true
+Otherwise, return false
+    */
+    set(index, value) {
+        var existingNode = this.get(index);
+
+        if (existingNode != null) {
+            existingNode.val = value
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /* 
+    Insert pseudocode
+-If the index is less than zero or greater than or equal to the length return false
+-If the index is 0, unshift
+-If the index is the same as the length, push
+-Use the get method to access the index -1
+-Set the next and prev properties on the correct nodes to link everything together
+-Increment the length
+-Return true
+    */
+    insert(index, value){
+        if(index < 0 || index >= this.length) return false
+        if(index === 0) return this.unshift(value)
+        if(index === this.length) return this.push(value)
+
+        var previousNode = this.get(index-1)
+        var nextNode = this.get(index)//previousNode.next
+        var newNode = new Node(value)
+
+        previousNode.next = newNode;
+        newNode.prev = previousNode;
+        newNode.next = nextNode;
+        nextNode.prev = newNode;
+        
+        
+        this.length++
+        return true
+        
+    }
+
+    /* 
+    Remove pseudocode
+
+-If the index is less than zero or greater than or equal to the length return undefined
+-If the index is 0, shift
+-If the index is the same as the length-1, pop
+-Use the get method to retrieve the item to be removed
+-Update the next and prev properties to remove the found node from the list
+-Set next and prev to null on the found node
+-Decrement the length      
+-Return the removed node.
+    */
+
+    remove(index){
+        if(index < 0 || index >= this.length) return undefined
+        if(index === 0) return this.shift(index)
+        if(index === this.length-1) return this.pop()
+
+        
+        var removedNode = this.get(index);
+        var previousNode = removedNode.prev;
+        var nextNode = removedNode.next;
+        
+
+        previousNode.next = removedNode.next;
+        nextNode.prev = removedNode.prev;
+
+        removedNode.next = null; //these steps are taken to severe the connections of this node
+        removedNode.prev = null;
+
+        this.length--;
+        return removedNode;
+
+
+    }
 }
 
 
@@ -167,6 +253,7 @@ list.push(3)
 list.push(4)
 
 //console.log(list);
-
-console.log(list.get(2))
+//list.insert(2,100)
+list.remove(2);
+console.log(list.get(2));
 
