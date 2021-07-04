@@ -217,6 +217,19 @@ Let's visualize this!
 
         return removed;
     }
+ 
+    //method for traversing a singlyLinkedlist
+    getNumber() {
+        let binary = String(this.head.val)
+
+        while (this.head.next !== null) {
+            this.head = this.head.next
+            binary += this.head.val
+        }
+
+
+        return parseInt(binary, 2)
+    }
 }
 
 var list = new SinglyLinkedList();
